@@ -35,7 +35,7 @@ class NotesService {
     return this._notes;
   }
 
-  getNotesById() {
+  getNotesById(id) {
     const note = this._notes.filter((n) => n.id === id)[0];
     if (!note) {
       throw new Error('Catatan tidak ditemukan');
@@ -58,7 +58,6 @@ class NotesService {
       tags,
       body,
       updatedAt,
-      createdAt,
     };
   }
 

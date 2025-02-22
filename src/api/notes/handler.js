@@ -1,7 +1,8 @@
 /* eslint-disable linebreak-style */
 class NotesHandler {
-  constructor(service) {
+  constructor(service, validator) {
     this._service = service;
+    this._validator = validator;
     this.postNoteHandler = this.postNoteHandler.bind(this);
     this.getNoteByIdHandler = this.getNoteByIdHandler.bind(this);
     this.getNotesHandler = this.getNotesHandler.bind(this);
@@ -11,6 +12,7 @@ class NotesHandler {
 
   postNoteHandler(request, h) {
     try {
+      this._validator.valodateNotePayload(request.payload);
       const { title = 'untitled', body, tags } = request.payload;
 
       // Menambahkan catatan baru
@@ -66,6 +68,7 @@ class NotesHandler {
   }
 
   putNoteByIdHandler(request, h) {
+    this._validator.valodateNotePayload(request.payload);
     try {
       const { id } = request.params;
       this._service.editNoteById(id, request.payload);

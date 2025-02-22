@@ -1,9 +1,9 @@
 /* eslint-disable linebreak-style */
 const Joi = require('joi');
 
-const NotePayloadSchema = Joi.Object({
-  title: Joi.String().required(),
-  body: Joi.String().required(),
+const NotePayloadSchema = Joi.object({
+  title: Joi.string().required(),
+  body: Joi.string().required(),
   tags: Joi.array().items(Joi.string()).required(),
 });
 
